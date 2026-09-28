@@ -4,6 +4,7 @@ import { createServer } from 'vite';
 
 const pages = [
   { page: 'home', file: 'dist/index.html' },
+  { page: 'about', file: 'dist/about/index.html' },
   { page: 'product', file: 'dist/products/ram-1500-etorque-mgu-rebuild-kit/index.html' },
 ];
 

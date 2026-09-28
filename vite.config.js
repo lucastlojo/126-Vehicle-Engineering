@@ -9,6 +9,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         home: resolve(import.meta.dirname, 'index.html'),
+        about: resolve(import.meta.dirname, 'about/index.html'),
         product: resolve(import.meta.dirname, 'products/ram-1500-etorque-mgu-rebuild-kit/index.html'),
       },
     },

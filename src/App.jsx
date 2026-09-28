@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { PRODUCT_PATH, currency, ramKit, sitePath } from './data.js';
+import { ABOUT_PATH, CUSTOMER_SERVICE_PHONE, EBAY_STORE_URL, LEGACY_CATALOG_URL, MOBILE_PHONE, PRODUCT_PATH, RENTAL_URL, SUPPORT_EMAIL, currency, ramKit, sitePath } from './data.js';
 import { AlertIcon, ArrowIcon, CartIcon, CheckIcon, CloseIcon, MenuIcon, SearchIcon, ShieldIcon, WrenchIcon } from './icons.jsx';
 
 const modelsByMake = {
   Ram: ['1500 eTorque 5.7L'],
   Tesla: ['Model S'],
   BMW: ['E34'],
-  Audi: ['Other Audi model'],
-  Toyota: ['Other Toyota model'],
+  Audi: ['A4'],
+  Toyota: ['Tacoma', 'Tundra'],
 };
-const years = Array.from({ length: 18 }, (_, index) => 2026 - index);
+const years = Array.from({ length: 38 }, (_, index) => 2026 - index);
 
 function Brand({ light = false }) {
   return <a className={`brand${light ? ' brand--light' : ''}`} href={sitePath()} aria-label="126 Vehicle Engineering home">
@@ -32,11 +32,11 @@ function SiteHeader({ cartCount, onCartOpen }) {
       <div className="container site-header__inner">
         <Brand />
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <details className="nav-dropdown"><summary>Shop by Vehicle</summary><div className="nav-dropdown__panel"><span className="menu-eyebrow">FIND YOUR VEHICLE</span><a href={PRODUCT_PATH}>Ram 1500 eTorque 5.7L <ArrowIcon /></a><a href={sitePath('#find-fix')}>Use vehicle search <ArrowIcon /></a></div></details>
-          <details className="nav-dropdown"><summary>Shop by Problem</summary><div className="nav-dropdown__panel"><span className="menu-eyebrow">START WITH THE FAILURE</span><a href={PRODUCT_PATH}>Ram eTorque MGU issues <ArrowIcon /></a><a href={sitePath('#problem')}>Starting & charging issues <ArrowIcon /></a></div></details>
+          <details className="nav-dropdown"><summary>Shop by Vehicle</summary><div className="nav-dropdown__panel"><span className="menu-eyebrow">FIND YOUR VEHICLE</span><a href={PRODUCT_PATH}>Ram 1500 eTorque 5.7L <ArrowIcon /></a><a href={LEGACY_CATALOG_URL}>Tesla, BMW, Audi & Toyota parts <ArrowIcon /></a><a href={sitePath('#find-fix')}>Use vehicle search <ArrowIcon /></a></div></details>
+          <details className="nav-dropdown"><summary>Shop by Problem</summary><div className="nav-dropdown__panel"><span className="menu-eyebrow">START WITH THE FAILURE</span><a href={PRODUCT_PATH}>Ram eTorque MGU issues <ArrowIcon /></a><a href={LEGACY_CATALOG_URL}>Tesla Model S suspension <ArrowIcon /></a><a href={EBAY_STORE_URL}>Tesla Model 3/Y climate parts <ArrowIcon /></a></div></details>
           <a href={`${PRODUCT_PATH}#installation`}>Repair Overview</a>
           <a href={sitePath('#for-shops')}>For Mechanics</a>
-          <a href={sitePath('#about')}>About</a>
+          <a href={ABOUT_PATH}>About</a>
         </nav>
         <div className="site-header__actions">
           <button type="button" className="header-cart" onClick={onCartOpen} aria-label={`Open cart, ${cartCount} items`}><CartIcon /><span className="header-cart__count">{cartCount}</span></button>
@@ -44,9 +44,9 @@ function SiteHeader({ cartCount, onCartOpen }) {
         </div>
       </div>
       {menuOpen && <nav id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation">
-        <details><summary>Shop by Vehicle</summary><a href={PRODUCT_PATH}>Ram 1500 eTorque 5.7L</a><a href={sitePath('#find-fix')}>Use vehicle search</a></details>
-        <details><summary>Shop by Problem</summary><a href={PRODUCT_PATH}>Ram eTorque MGU issues</a><a href={sitePath('#problem')}>Starting & charging issues</a></details>
-        <a href={`${PRODUCT_PATH}#installation`}>Repair Overview</a><a href={sitePath('#for-shops')}>For Mechanics</a><a href={sitePath('#about')}>About</a>
+        <details><summary>Shop by Vehicle</summary><a href={PRODUCT_PATH}>Ram 1500 eTorque 5.7L</a><a href={LEGACY_CATALOG_URL}>Tesla, BMW, Audi & Toyota parts</a><a href={sitePath('#find-fix')}>Use vehicle search</a></details>
+        <details><summary>Shop by Problem</summary><a href={PRODUCT_PATH}>Ram eTorque MGU issues</a><a href={LEGACY_CATALOG_URL}>Tesla Model S suspension</a><a href={EBAY_STORE_URL}>Tesla Model 3/Y climate parts</a></details>
+        <a href={`${PRODUCT_PATH}#installation`}>Repair Overview</a><a href={sitePath('#for-shops')}>For Mechanics</a><a href={ABOUT_PATH}>About</a>
       </nav>}
     </header>
   </>;
@@ -55,9 +55,9 @@ function SiteHeader({ cartCount, onCartOpen }) {
 function SiteFooter() {
   return <footer className="site-footer ve-on-dark">
     <div className="container footer-grid">
-      <div><Brand light /><p>Focused repair kits for the failure points that deserve a better answer.</p></div>
-      <div><h2>Explore</h2><a href={sitePath('#find-fix')}>Find your fix</a><a href={PRODUCT_PATH}>Ram eTorque MGU kit</a><a href={sitePath('#for-shops')}>For mechanics</a></div>
-      <div><h2>Get help</h2><a href="mailto:sirbob1002@gmail.com">Ask a fitment question</a><a href="tel:+18455323106">845 532 3106</a><span>Rochester, New York</span></div>
+      <div><Brand light /><p>Rochester-based repair kits, specialty parts, and practical answers for the job in front of you.</p></div>
+      <div><h2>Explore</h2><a href={sitePath('#find-fix')}>Find your fix</a><a href={PRODUCT_PATH}>Ram eTorque MGU kit</a><a href={LEGACY_CATALOG_URL}>Full parts catalog</a><a href={EBAY_STORE_URL}>eBay store</a><a href={ABOUT_PATH}>About us</a></div>
+      <div><h2>Get help</h2><a href={`mailto:${SUPPORT_EMAIL}`}>Ask a fitment question</a><a href={`tel:${CUSTOMER_SERVICE_PHONE}`}>Customer service: 845 532 3106</a><a href={`tel:${MOBILE_PHONE}`}>Mobile: 585 509 2950</a><span>Rochester, New York</span></div>
     </div>
     <div className="container footer-bottom"><span>© {new Date().getFullYear()} 126 Vehicle Engineering</span><span>Fix the failure. Keep moving.</span></div>
   </footer>;
@@ -93,7 +93,7 @@ function VehicleFitmentSearch({ compact = false, onResult, defaultYear = '' }) {
       const search = new URLSearchParams({ year, make, model });
       window.location.assign(`${PRODUCT_PATH}?${search.toString()}#fitment`);
     } else {
-      setMessage('No exact kit is listed for that selection yet. Tell us what you are working on and we will help you check your options.');
+      setMessage('This preview has a dedicated fitment page for the Ram kit. Other listed parts are in our current catalog; confirm the vehicle and part number there.');
     }
   }
 
@@ -105,7 +105,7 @@ function VehicleFitmentSearch({ compact = false, onResult, defaultYear = '' }) {
       {compact && <label className="fitment-search__part"><span>Unit / OE number <em>(optional)</em></span><input className="ve-field" value={partNumber} onChange={(event) => setPartNumber(event.target.value)} placeholder="e.g. 68623194AC" autoComplete="off" /></label>}
       <button className="ve-button ve-button--cart fitment-search__submit" type="submit"><SearchIcon />{compact ? 'Check Fitment' : 'Find Your Fix'}</button>
     </div>
-    {message && <p className="fitment-search__message" role="status">{message} <a href="mailto:sirbob1002@gmail.com?subject=Vehicle%20fitment%20question">Ask a fitment question</a></p>}
+    {message && <p className="fitment-search__message" role="status">{message} <a href={LEGACY_CATALOG_URL}>Browse the current catalog</a> or <a href="mailto:sirbob1002@gmail.com?subject=Vehicle%20fitment%20question">ask us.</a></p>}
   </form>;
 }
 
@@ -113,15 +113,15 @@ function HomePage() {
   return <main id="main-content">
     <section className="hero ve-on-dark" aria-labelledby="home-title">
       <div className="hero__grid container">
-        <div className="hero__copy"><span className="eyebrow eyebrow--amber"><span className="eyebrow__line" /> TARGETED REPAIRS. REAL ANSWERS.</span><h1 id="home-title">FIX THE FAILURE.<br /><span>SKIP THE WHOLE-UNIT BILL.</span></h1><p>When a repairable component fails, replacing the entire assembly can cost you time and money. We build focused repair kits for the problems the factory replacement approach leaves behind.</p><div className="hero__actions"><ButtonLink href="#find-fix">Find Your Fix</ButtonLink><a href="#approach" className="text-link text-link--light">See how we work <ArrowIcon /></a></div></div>
+        <div className="hero__copy"><span className="eyebrow eyebrow--amber"><span className="eyebrow__line" /> TARGETED REPAIRS. REAL ANSWERS.</span><h1 id="home-title">REPAIR THE FAILED PART.<br /><span>KEEP YOUR TRUCK MOVING.</span></h1><p>For a serviceable Ram 1500 eTorque MGU, our resolver-and-bearing kit offers a focused repair path. We also source Tesla suspension and climate parts and vehicle-specific exterior components.</p><div className="hero__actions"><ButtonLink href="#find-fix">Find Your Fix</ButtonLink><a href="#approach" className="text-link text-link--light">See how we work <ArrowIcon /></a></div></div>
         <div className="hero__visual" aria-hidden="true"><img src={sitePath('media/hero-blueprint.svg')} alt="" /><div className="hero__visual-label"><span>126 / ENGINEERING NOTE 001</span><strong>REPAIR THE PART<br />THAT FAILED.</strong></div></div>
       </div>
-      <div className="container hero__search-wrap" id="find-fix"><div className="hero__search-title"><div><span className="eyebrow">START HERE</span><h2>What are you working on?</h2></div><p>Select your vehicle to find a matching repair option.</p></div><VehicleFitmentSearch /></div>
+      <div className="container hero__search-wrap" id="find-fix"><div className="hero__search-title"><div><span className="eyebrow">START HERE</span><h2>What are you working on?</h2></div><p>Check the Ram kit here, or browse our wider parts catalog.</p></div><VehicleFitmentSearch /></div>
     </section>
 
     <div className="proof-strip"><div className="container proof-strip__inner"><div><WrenchIcon /><span>BUILT AROUND THE FAILURE POINT</span></div><div><ShieldIcon /><span>CLEAR FITMENT GUIDANCE</span></div><div><CheckIcon /><span>STRAIGHT REPAIR LIMITS</span></div></div></div>
 
-    <section className="section section--problem" id="problem"><div className="container split-intro"><div><span className="eyebrow">THE PROBLEM</span><h2>A SMALL FAILURE SHOULDN’T DEMAND A WHOLE NEW ASSEMBLY.</h2></div><p>You know the frustration: the vehicle is down, the replacement quote is steep, and the part you need may be hard to get. Yet the failure may be limited to one component inside an otherwise usable assembly.</p></div><div className="container comparison"><div className="comparison__factory"><span className="comparison__number">01 / THE DEFAULT</span><h3>Replace the whole thing.</h3><p>Pay for an entire assembly, even when the failure may be limited to a repairable part.</p><div className="comparison__symbol" aria-hidden="true">×</div></div><div className="comparison__answer"><span className="comparison__number">02 / THE 126 APPROACH</span><h3>Repair what failed.</h3><p>Identify the weak point, confirm the unit is serviceable, and use a focused kit when the repair fits.</p><div className="comparison__symbol" aria-hidden="true">↗</div></div></div></section>
+    <section className="section section--problem" id="problem"><div className="container split-intro"><div><span className="eyebrow">THE PROBLEM</span><h2>WHEN THE MGU BEARING HOWLS, YOU NEED A PRACTICAL NEXT STEP.</h2></div><p>Ram owners report whining bearings, long replacement waits, and trucks stuck in the bay. A diagnosed resolver or bearing fault may leave the rest of the MGU serviceable. The right repair starts with confirming exactly what failed.</p></div><div className="container comparison"><div className="comparison__factory"><span className="comparison__number">01 / THE DEFAULT</span><h3>Replace the whole thing.</h3><p>Pay for an entire assembly, even when the failure may be limited to a repairable part.</p><div className="comparison__symbol" aria-hidden="true">×</div></div><div className="comparison__answer"><span className="comparison__number">02 / THE 126 APPROACH</span><h3>Repair what failed.</h3><p>Identify the weak point, confirm the unit is serviceable, and use a focused kit when the repair fits.</p><div className="comparison__symbol" aria-hidden="true">↗</div></div></div></section>
 
     <section className="section section--approach" id="approach"><div className="container"><div className="section-heading"><span className="eyebrow">A CLEAR PATH TO REPAIR</span><h2>THREE STEPS. NO GUESSWORK.</h2><p>The right kit starts with the right diagnosis.</p></div><div className="steps-grid"><article><span className="step-number">01</span><h3>Start with your vehicle or symptom.</h3><p>Choose your make and model, describe the problem, or search the part number on your bench.</p></article><article><span className="step-number">02</span><h3>Confirm the repair.</h3><p>Review fitment, kit contents, covered failure modes, and conditions that call for a different repair.</p></article><article><span className="step-number">03</span><h3>Repair with a plan.</h3><p>Prepare for the work yourself or bring the kit details to your mechanic.</p></article></div></div></section>
 
@@ -129,11 +129,22 @@ function HomePage() {
 
     <section className="section section--people" id="for-shops"><div className="container"><div className="section-heading"><span className="eyebrow">BUILT FOR THE PEOPLE DOING THE WORK</span><h2>THE RIGHT ANSWER FOR THE JOB IN FRONT OF YOU.</h2></div><div className="people-grid"><article><div className="people-icon"><WrenchIcon /></div><span className="eyebrow">FOR VEHICLE OWNERS</span><h3>You need a straight answer.</h3><p>Understand the problem, check the fit, and choose a repair with more confidence before you spend another dollar.</p><a className="text-link" href="#find-fix">Find your fix <ArrowIcon /></a></article><article><div className="people-icon"><ShieldIcon /></div><span className="eyebrow">FOR INDEPENDENT MECHANICS</span><h3>Your bay can’t wait.</h3><p>Find the kit, confirm its scope, and give your customer a practical repair option without wasting time on vague parts listings.</p><a className="text-link" href={PRODUCT_PATH}>See kit details <ArrowIcon /></a></article></div></div></section>
 
-    <section className="section section--about" id="about"><div className="container about-grid"><div><span className="eyebrow eyebrow--amber">WHY 126 EXISTS</span><h2>WE PAY ATTENTION TO THE FAILURES OTHERS PASS OVER.</h2></div><div><p>126 Vehicle Engineering exists to make practical repairs possible where full assembly replacement has become the default answer. We look for the repairable failure point, build a focused solution, and give you the information to decide whether it fits your vehicle.</p><p>No mystery claims. No pretending one kit fixes every problem. Just engineered parts for real repairs.</p><a className="text-link text-link--light" href={PRODUCT_PATH}>See a real repair kit <ArrowIcon /></a></div></div></section>
+    <section className="section section--about" id="about"><div className="container about-grid"><div><span className="eyebrow eyebrow--amber">WHY 126 EXISTS</span><h2>WE PAY ATTENTION TO THE FAILURES OTHERS PASS OVER.</h2></div><div><p>Based in Rochester, 126 Vehicle Operation LLC offers targeted Ram eTorque repair parts, Tesla suspension and climate components, and selected exterior parts for Audi, BMW, and Toyota vehicles.</p><p>Our approach is specific: identify the component, confirm the fit, and state when a repair kit is not the answer.</p><a className="text-link text-link--light" href={ABOUT_PATH}>Read our story <ArrowIcon /></a></div></div></section>
 
     <section className="section section--faq"><div className="container faq-grid"><div><span className="eyebrow">GOOD QUESTIONS</span><h2>KNOW BEFORE YOU ORDER.</h2></div><div><details><summary>Will a repair kit fix every symptom?</summary><p>No. Similar symptoms can have different causes. Confirm the failure and review the product page’s repair scope and exclusions before ordering.</p></details><details><summary>How do I know a kit fits my vehicle?</summary><p>Start with year, make, and model. Then compare the unit or OE number and any product-specific measurements. Contact us if a detail does not match.</p></details><details><summary>Can my mechanic install the kit?</summary><p>Yes. Share the product page with your mechanic so they can review the fitment, kit contents, and job requirements before beginning work.</p></details></div></div></section>
 
     <section className="closing-cta ve-on-dark"><div className="container"><span className="eyebrow eyebrow--amber">READY TO GET MOVING?</span><h2>YOUR VEHICLE HAS A PROBLEM.<br />FIND THE PART THAT SOLVES IT.</h2><p>Search by vehicle. Check the repair. Get a clear path forward.</p><ButtonLink href="#find-fix">Find Your Fix</ButtonLink></div></section>
+  </main>;
+}
+
+function AboutPage() {
+  return <main id="main-content" className="about-page">
+    <div className="container"><nav className="breadcrumbs" aria-label="Breadcrumb"><a href={sitePath()}>Home</a><span aria-hidden="true">/</span><span aria-current="page">About</span></nav></div>
+    <section className="about-page__hero ve-on-dark"><div className="container"><span className="eyebrow eyebrow--amber">ROCHESTER, NEW YORK</span><h1>BUILT AROUND THE <span>REPAIRABLE PART.</span></h1><p>126 Vehicle Engineering helps owners and independent shops find practical, vehicle-specific parts when an entire replacement assembly is not the only sensible answer.</p></div></section>
+    <section className="section"><div className="container about-page__intro"><div><span className="eyebrow">OUR APPROACH</span><h2>START WITH THE FAILURE. CHECK THE LIMITS.</h2></div><div><p>126 Vehicle Engineering is the storefront of Rochester-based 126 Vehicle Operation LLC. We focus on clear repair scope, part identification, and a useful next step for the person doing the work.</p><p>The Ram 1500 eTorque MGU rebuild kit shows what that means. When testing points to a resolver or bearing fault and the unit is otherwise serviceable, a focused rebuild may be an option. Stator or inverter damage calls for a different repair. We put those limits up front so you can decide before you spend.</p></div></div></section>
+    <section className="section section--approach"><div className="container"><div className="section-heading"><span className="eyebrow">WHAT WE OFFER</span><h2>PARTS AND SERVICES WITH A CLEAR PURPOSE.</h2></div><div className="about-page__offerings"><article><span>01 / REPAIR KIT</span><h3>Ram eTorque MGU</h3><p>A resolver-and-bearing rebuild path for listed 2019–2024 Ram 1500 5.7L eTorque units that pass inspection.</p><a className="text-link" href={PRODUCT_PATH}>Check the kit <ArrowIcon /></a></article><article><span>02 / SPECIALTY PARTS</span><h3>Tesla and vehicle-specific parts</h3><p>Tesla Model S air-suspension parts, Tesla Model 3/Y climate components, and selected Audi, BMW, and Toyota exterior parts. Check the exact vehicle and part number before ordering.</p><a className="text-link" href={LEGACY_CATALOG_URL}>Browse current catalog <ArrowIcon /></a><a className="text-link" href={EBAY_STORE_URL}>See eBay listings <ArrowIcon /></a></article><article><span>03 / LOCAL SERVICES</span><h3>Repair and rentals</h3><p>Our existing Rochester site advertises ICE and EV/Tesla auto repair, specialty parts supply, and classic Mercedes vehicle rentals. Contact us for current availability and service details.</p><a className="text-link" href={RENTAL_URL}>See rental details <ArrowIcon /></a></article></div></div></section>
+    <section className="section"><div className="container about-page__contact"><div><span className="eyebrow">WORK WITH US</span><h2>BRING US THE VEHICLE, PART NUMBER, AND SYMPTOM.</h2><p>Tell us what failed or what you are trying to source. Include photos and the unit number when you have them, and we can help you check the next step.</p></div><div className="about-page__contact-card"><h3>Contact 126 Vehicle Engineering</h3><p>Warehouse listed on our current site: 920 Exchange St, Rochester, NY 14608. Contact us before visiting.</p><a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a><a href={`tel:${CUSTOMER_SERVICE_PHONE}`}>Customer service: 845 532 3106</a><a href={`tel:${MOBILE_PHONE}`}>Mobile: 585 509 2950</a></div></div></section>
+    <section className="closing-cta ve-on-dark"><div className="container"><span className="eyebrow eyebrow--amber">READY TO START?</span><h2>FIND THE PART THAT FITS THE PROBLEM.</h2><p>Check the repair scope, then talk to us if the details do not match.</p><ButtonLink href={PRODUCT_PATH}>Explore the Ram Kit</ButtonLink></div></section>
   </main>;
 }
 
@@ -207,5 +218,5 @@ export default function App({ page = 'home' }) {
   useEffect(() => { try { setInCart(localStorage.getItem('ve-cart-ram-kit') === '1'); } catch { /* storage may be unavailable */ } }, []);
   function addToCart() { setInCart(true); try { localStorage.setItem('ve-cart-ram-kit', '1'); } catch { /* session-only cart */ } setCartOpen(true); }
   function removeFromCart() { setInCart(false); try { localStorage.removeItem('ve-cart-ram-kit'); } catch { /* session-only cart */ } }
-  return <><a className="skip-link" href="#main-content">Skip to main content</a><SiteHeader cartCount={inCart ? 1 : 0} onCartOpen={() => setCartOpen(true)} />{page === 'product' ? <ProductPage onAdd={addToCart} inCart={inCart} /> : <HomePage />}<SiteFooter /><CartDialog open={cartOpen} onClose={() => setCartOpen(false)} inCart={inCart} onRemove={removeFromCart} /></>;
+  return <><a className="skip-link" href="#main-content">Skip to main content</a><SiteHeader cartCount={inCart ? 1 : 0} onCartOpen={() => setCartOpen(true)} />{page === 'product' ? <ProductPage onAdd={addToCart} inCart={inCart} /> : page === 'about' ? <AboutPage /> : <HomePage />}<SiteFooter /><CartDialog open={cartOpen} onClose={() => setCartOpen(false)} inCart={inCart} onRemove={removeFromCart} /></>;
 }

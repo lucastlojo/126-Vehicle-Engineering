@@ -341,3 +341,23 @@ h3 { font-size: var(--text-h3); line-height: 1.08; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+.about-page__hero { padding-block: clamp(4rem, 8vw, 7rem); background: radial-gradient(circle at 85% 15%, #284251, var(--color-graphite) 55%, #101d26); color: var(--color-white); }
+.about-page__hero h1 { max-width: 57rem; margin: 1rem 0 1.25rem; }
+.about-page__hero h1 span { color: var(--color-amber); }
+.about-page__hero p { max-width: 44rem; margin: 0; color: var(--color-steel-light); font-size: var(--text-lead); line-height: 1.65; }
+.about-page__intro, .about-page__contact { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(2rem, 7vw, 7rem); }
+.about-page__intro h2, .about-page__contact h2 { margin: .8rem 0 0; }
+.about-page__intro p, .about-page__contact p { color: var(--color-steel); font-size: var(--text-lead); line-height: 1.65; }
+.about-page__offerings { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.about-page__offerings article { display: flex; flex-direction: column; padding: 1.7rem; border: 1px solid var(--color-line); border-top: 4px solid var(--color-amber); border-radius: 0 0 var(--radius-card) var(--radius-card); background: var(--color-white); }
+.about-page__offerings article > span { color: var(--color-signal); font-size: .7rem; font-weight: 800; letter-spacing: .12em; }
+.about-page__offerings h3 { margin: 1rem 0 .6rem; font-size: 1.9rem; }
+.about-page__offerings p { color: var(--color-steel); }
+.about-page__offerings .text-link { width: fit-content; margin-top: auto; }
+.about-page__contact-card { display: grid; gap: .75rem; align-content: start; padding: 2rem; border-radius: var(--radius-card); background: var(--color-mist); }
+.about-page__contact-card h3 { margin: 0; font-size: 1.8rem; }
+.about-page__contact-card p { margin: 0; font-size: .9rem; }
+.about-page__contact-card a { width: fit-content; color: var(--color-signal); font-weight: 700; overflow-wrap: anywhere; }
+@media (max-width: 55rem) { .about-page__offerings { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 45rem) { .about-page__intro, .about-page__contact, .about-page__offerings { grid-template-columns: 1fr; } .about-page__contact-card { padding: 1.5rem; } }

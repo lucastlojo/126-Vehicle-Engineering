@@ -14,6 +14,7 @@ base.search = '';
 base.hash = '';
 const pages = [
   { path: '/', heading: '#home-title' },
+  { path: '/about/', heading: 'main h1' },
   { path: '/products/ram-1500-etorque-mgu-rebuild-kit/', heading: 'main h1' },
 ];
 const widths = [320, 390, 719, 721, 879, 881, 1280];
@@ -78,7 +79,7 @@ try {
           check(await page.locator('.fitment-search select').count() === 3, `${path} @ ${width}px: Year/Make/Model fields missing`);
           const columns = await page.locator('.fitment-search__fields').evaluate((el) => getComputedStyle(el).gridTemplateColumns.split(' ').length);
           check(width <= 720 ? columns === 2 : columns === 4, `${path} @ ${width}px: fitment grid has ${columns} columns`);
-        } else {
+        } else if (path.includes('/products/')) {
           const layout = await page.locator('.product-layout').evaluate((el) => getComputedStyle(el).gridTemplateColumns.split(' ').length);
           const mobileBar = await page.locator('.mobile-purchase-bar').evaluate((el) => getComputedStyle(el).display);
           const sticky = await page.locator('.purchase-column').evaluate((el) => getComputedStyle(el).position);
