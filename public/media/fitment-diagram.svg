@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Conceptual unit-number check illustration">
+  <rect width="800" height="800" fill="#f4f6f7"/><g stroke="#d5dde2" stroke-width="1"><path d="M0 100h800M0 200h800M0 300h800M0 400h800M0 500h800M0 600h800M0 700h800M100 0v800M200 0v800M300 0v800M400 0v800M500 0v800M600 0v800M700 0v800"/></g>
+  <rect x="135" y="165" width="530" height="425" rx="15" fill="#172733"/><rect x="176" y="210" width="448" height="320" rx="5" fill="#ecf0f2"/>
+  <path d="M228 273h240M228 306h160M228 363h350M228 395h350" stroke="#748694" stroke-width="15" stroke-linecap="round"/><rect x="213" y="443" width="378" height="58" rx="3" fill="#f5b84b"/><text x="231" y="480" fill="#101820" font-family="Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="2">CHECK UNIT NUMBER</text>
+  <g fill="#172733" font-family="Arial, sans-serif" font-weight="700"><text x="52" y="68" font-size="19" letter-spacing="3">126 / ENGINEERING</text><text x="52" y="730" font-size="25">FITMENT STARTS WITH THE UNIT</text></g><g fill="#455865" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2"><text x="53" y="754">CONCEPTUAL TECHNICAL ILLUSTRATION</text><text x="562" y="100">02 / FITMENT</text></g>
+</svg>

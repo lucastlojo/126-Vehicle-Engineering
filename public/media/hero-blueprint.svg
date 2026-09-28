@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" role="img" aria-label="Conceptual truck and mechanical repair diagram">
+  <defs>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d7e2e8" stop-opacity=".7"/><stop offset="1" stop-color="#5e7583" stop-opacity=".17"/></linearGradient>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" fill="none" stroke="#7894a3" stroke-opacity=".22" stroke-width="1"/></pattern>
+  </defs>
+  <rect width="760" height="520" fill="url(#grid)" opacity=".7"/>
+  <g fill="none" stroke="#7894a3" stroke-opacity=".5" stroke-width="1"><path d="M50 470h650M80 70v360M80 94h110m-110 0 8-8m-8 8 8 8M680 94h-90m90 0-8-8m8 8-8 8"/><circle cx="475" cy="246" r="205" stroke-dasharray="3 9"/><circle cx="475" cy="246" r="160" stroke-dasharray="8 7"/></g>
+  <g transform="translate(102 196)" fill="none" stroke="url(#metal)" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M29 155h45l24-100q5-19 26-21h203q18 0 30 17l38 55h103q28 0 42 17l34 34h38q13 0 13 14v32H18v-29q0-19 11-19Z"/>
+    <path d="M98 55h219l28 47H86Z"/><path d="M373 63h30l35 40h-37Z"/><path d="M18 169h600"/>
+    <circle cx="132" cy="202" r="46" fill="#172733"/><circle cx="132" cy="202" r="25"/><circle cx="493" cy="202" r="46" fill="#172733"/><circle cx="493" cy="202" r="25"/>
+  </g>
+  <g transform="translate(478 244)"><circle r="111" fill="#172733" stroke="#f5b84b" stroke-width="2"/><circle r="86" fill="none" stroke="#f5b84b" stroke-opacity=".55" stroke-width="14" stroke-dasharray="5 11"/><circle r="57" fill="none" stroke="#f5b84b" stroke-width="2"/><circle r="38" fill="#f5b84b" fill-opacity=".12" stroke="#f5b84b" stroke-width="3"/><circle r="13" fill="#f5b84b"/><path d="M0-124v22M0 102v22M-124 0h22M102 0h22" stroke="#f5b84b" stroke-width="3"/></g>
+  <g fill="#f5b84b" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="2"><text x="343" y="97">FAILURE POINT / ISOLATED</text><text x="80" y="494">126 VEHICLE ENGINEERING</text></g>
+  <path d="M433 111 459 157M593 354l55 36" stroke="#f5b84b" stroke-width="2"/>
+</svg>

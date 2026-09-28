@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Conceptual motor-generator technical illustration">
+  <defs><pattern id="lines" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" fill="none" stroke="#d7e0e5" stroke-width="1"/></pattern><linearGradient id="steel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c8d3da"/><stop offset=".5" stop-color="#6e8390"/><stop offset="1" stop-color="#e4ebef"/></linearGradient></defs>
+  <rect width="800" height="800" fill="#f4f6f7"/><rect width="800" height="800" fill="url(#lines)"/>
+  <g fill="none" stroke="#455865" stroke-opacity=".34" stroke-width="2"><circle cx="400" cy="390" r="286" stroke-dasharray="4 12"/><path d="M400 55v100m0 475v100M65 390h110m450 0h110"/></g>
+  <g transform="translate(400 390)"><circle r="234" fill="#172733" stroke="#455865" stroke-width="8"/><circle r="208" fill="none" stroke="url(#steel)" stroke-width="26"/><circle r="176" fill="#101820" stroke="#f5b84b" stroke-width="4"/><circle r="150" fill="none" stroke="#f5b84b" stroke-opacity=".65" stroke-width="27" stroke-dasharray="7 14"/><circle r="108" fill="#455865" stroke="url(#steel)" stroke-width="18"/><circle r="66" fill="#172733" stroke="#f5b84b" stroke-width="8"/><circle r="26" fill="#f5b84b"/></g>
+  <g fill="#172733" font-family="Arial, sans-serif" font-weight="700"><text x="52" y="68" font-size="19" letter-spacing="3">126 / ENGINEERING</text><text x="52" y="730" font-size="25">RAM 1500 ETORQUE MGU</text></g>
+  <g fill="#455865" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2"><text x="53" y="754">CONCEPTUAL TECHNICAL ILLUSTRATION</text><text x="562" y="100">01 / OVERVIEW</text></g>
+  <path d="M580 580h150M580 590h90" stroke="#f5b84b" stroke-width="4"/>
+</svg>
