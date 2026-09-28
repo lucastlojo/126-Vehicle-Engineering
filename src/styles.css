@@ -160,8 +160,8 @@ h3 { font-size: var(--text-h3); line-height: 1.08; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; }
 .footer-grid > div:first-child p { max-width: 24rem; margin: 1.4rem 0 0; color: var(--color-steel-light); font-size: .9rem; }
 .footer-grid h2 { margin: .3rem 0 1rem; color: var(--color-amber); font-family: var(--font-body); font-size: .75rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
-.footer-grid a:not(.brand), .footer-grid span:not(.brand__mark, .brand__name) { display: block; width: fit-content; margin-bottom: .65rem; color: var(--color-steel-light); font-size: .88rem; text-decoration: none; }
-.footer-grid a:hover { text-decoration: underline; }
+.footer-grid > div > a:not(.brand), .footer-grid > div > span { display: block; width: fit-content; margin-bottom: .65rem; color: var(--color-steel-light); font-size: .88rem; text-decoration: none; }
+.footer-grid a:not(.brand):hover { text-decoration: underline; }
 .footer-bottom { display: flex; justify-content: space-between; gap: 1rem; padding-block: 1.2rem; border-top: 1px solid rgba(255,255,255,.14); color: var(--color-steel-light); font-size: .73rem; }
 
 .product-page { padding-bottom: 5rem; }
