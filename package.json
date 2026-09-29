@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build && node scripts/prerender.mjs",
     "preview": "vite preview --host 127.0.0.1",
-    "verify:staging": "node scripts/verify-staging.mjs"
+    "verify:staging": "node scripts/verify-staging.mjs",
+    "verify:interactions": "node scripts/verify-interactions.mjs"
   },
   "dependencies": {
     "react": "^19.0.0",

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 640" role="img" aria-label="Concept unit identification diagram with reference number 68623194AC">
+<defs><linearGradient id="case" x2="1" y2="1"><stop stop-color="#536a7f"/><stop offset=".5" stop-color="#182635"/><stop offset="1" stop-color="#384d62"/></linearGradient></defs>
+<g fill="none" stroke="#667d942d"><path d="M70 100h660M70 540h660M120 80v480M680 80v480"/><circle cx="340" cy="315" r="190" stroke-dasharray="4 10"/></g>
+<g transform="translate(340 315)"><path d="M-139-90-83-150H93l56 71 21 185-72 60H-94l-70-62Z" fill="url(#case)" stroke="#758a9b" stroke-width="2"/><circle r="130" fill="#0c1420" stroke="#8295a8" stroke-width="10"/><circle r="108" stroke="#4f647a" stroke-width="18" fill="none"/><circle r="65" fill="#1c2c3c" stroke="#6d8298" stroke-width="4"/><circle r="33" fill="#080e17" stroke="#8596a4" stroke-width="4"/><g fill="#a6b2c2"><circle cx="-111" cy="-95" r="5"/><circle cx="105" cy="-98" r="5"/><circle cx="117" cy="112" r="5"/><circle cx="-119" cy="109" r="5"/></g></g>
+<path d="M413 292h118l41-73" stroke="#ff8347" stroke-width="2" fill="none"/><circle cx="413" cy="292" r="4" fill="#ff8347"/>
+<rect x="485" y="113" width="245" height="108" rx="12" fill="#121d2b" stroke="#52667a"/>
+<text x="507" y="143" font-family="monospace" font-size="12" fill="#ff8347" letter-spacing="2">REFERENCE UNIT</text>
+<text x="507" y="182" font-family="monospace" font-size="27" fill="#f3f5f7">68623194AC</text>
+<text x="112" y="573" font-family="monospace" font-size="12" fill="#a6b2c2" letter-spacing="1">COMPARE YOUR UNIT NUMBER + BEARING DIMENSIONS</text>
+</svg>

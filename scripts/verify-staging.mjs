@@ -38,6 +38,8 @@ try {
       });
       const page = await context.newPage();
       const badAssets = [];
+      const jsErrors = [];
+      page.on('pageerror', (error) => jsErrors.push(error.message));
       page.on('response', (response) => {
         if (new URL(response.url()).origin === base.origin && response.status() >= 400 && ['image', 'stylesheet', 'script', 'font'].includes(response.request().resourceType())) {
           badAssets.push(`${response.status()} ${response.url()}`);
@@ -55,6 +57,9 @@ try {
         const robots = await page.locator('meta[name="robots"]').getAttribute('content');
         check(robots?.includes('noindex'), `${path} @ ${width}px: missing noindex robots meta tag`);
         check(await page.locator(heading).isVisible(), `${path} @ ${width}px: heading not visible (possible protection/login page)`);
+        for (const lazyImage of await page.locator('img[loading=lazy]').all()) await lazyImage.scrollIntoViewIfNeeded();
+        await page.evaluate(async () => { await Promise.all([...document.images].map((img) => img.decode().catch(() => {}))); window.scrollTo(0, 0); });
+        check(jsErrors.length === 0, `${path} @ ${width}px: JavaScript errors ${jsErrors.join(', ')}`);
         const viewport = await page.evaluate((basePath) => ({
           declared: !!document.querySelector('meta[name="viewport"][content*="width=device-width"]'),
           scrollWidth: document.documentElement.scrollWidth,

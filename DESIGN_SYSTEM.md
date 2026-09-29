@@ -1,134 +1,129 @@
-# 126 Vehicle Engineering — UI design system
+# 126 Vehicle Engineering — design system
+Version 2.0 · September 2026
 
-Version 1.0 · September 2026
+## Direction
+Dark industrial surfaces, electric orange actions, spacious technical typography, and clear repair limits. Component diagrams support the engineering story. One shared Brand component keeps the header and footer wordmark identical.
 
-## Design direction
+## Implementation
+- `tokens.css`: full CSS custom properties, buttons, fields, status badges, focus and reduced-motion rules.
+- `src/styles.css`: responsive page layouts and component styling.
+- `src/App.jsx`: React homepage, product page, About, navigation, gallery, fitment, and cart.
+- `tailwind.config.cjs`: optional Tailwind v3 token adapter. The Vite build uses ordinary CSS and does not require Tailwind.
+- `src/data.js`: product, price, contact, and media source data.
 
-Build a precise, work-ready storefront: graphite structure, clean silver surfaces, and one high-visibility amber action color. Let product photography, fitment evidence, and repair information carry the authority. Avoid faux carbon fiber, distressed textures, chrome gradients, and decorative gauges.
+## Palette
+| Role | Value |
+| --- | --- |
+| Canvas | #090D16 |
+| Surface | #101722 |
+| Raised surface | #17212E |
+| Hover surface | #202D3D |
+| Primary text | #F3F5F7 |
+| Secondary text | #A6B2C2 |
+| Quiet text | #8392A5 |
+| Action / hover / pressed | #FF8347 / #FF9B6B / #ED7033 |
+| Text on action | #131820 |
+| Decorative border | white at 10% |
+| Control boundary | #68798D |
+| Focus outline | #9CCAFF |
+| Success | #77E5AE on #102C24 |
+| Review | #F5CF82 on #302819 |
+| Mismatch | #FFABA9 on #342023 |
 
-The interface should help a customer answer three questions quickly: **Does it fit? What failure does it fix? Can I trust this repair?**
+Use decorative low-contrast borders only for grouping. Inputs and secondary buttons have stronger boundaries. Status always includes explanatory words and an icon.
 
-## Color system
-
-| Token | Hex | Use |
-| --- | --- | --- |
-| Ink | `#101820` | Primary text, text on amber CTAs |
-| Graphite | `#172733` | Header, dark panels, footer |
-| Steel | `#455865` | Secondary text on light surfaces |
-| Silver | `#748694` | Input borders and non-text control boundaries |
-| Mist | `#F4F6F7` | Alternate sections, cards, image-gallery backdrop |
-| White | `#FFFFFF` | Main page surface |
-| Amber | `#F5B84B` | Primary CTA and selected purchase actions |
-| Amber hover | `#EAA72C` | Primary CTA hover |
-| Amber pressed | `#D8961F` | Primary CTA pressed |
-| Signal blue | `#006EA6` | Text links, keyboard focus, selected gallery thumbnail |
-| Confirmed green | `#145334` on `#DDF4E7` | Verified vehicle fitment only |
-| Caution | `#684B00` on `#FFF1C7` | Fitment needs review |
-| Error | `#8B2B22` on `#FDE5E2` | Fitment mismatch or form error |
-
-Amber means **take action**, not general decoration. Green means a fitment check actually passed; never use it for a merely selected vehicle or an unverified seller claim. Do not use color alone to convey fitment status.
-
-### WCAG 2.1 AA text pairs
-
-Ratios below use the WCAG relative-luminance formula. All exceed 4.5:1 for normal text and 3:1 for large text.
-
-| Foreground / background | Contrast |
+### WCAG text contrast
+Calculated with WCAG relative luminance on the specified opaque surfaces:
+| Pair | Ratio |
 | --- | ---: |
-| Ink / White | 17.89:1 |
-| Ink / Mist | 16.51:1 |
-| Steel / White | 7.40:1 |
-| Steel / Mist | 6.83:1 |
-| White / Graphite | 15.28:1 |
-| Light steel `#C7D3DC` / Graphite | 10.03:1 |
-| Ink / Amber | 10.09:1 |
-| Ink / Amber hover | 8.57:1 |
-| Ink / Amber pressed | 7.07:1 |
-| Signal blue / White | 5.55:1 |
-| Signal blue / Mist | 5.12:1 |
-| Confirmed green / pale green | 7.84:1 |
-| Caution text / pale yellow | 7.19:1 |
-| Error text / pale red | 7.09:1 |
+| Primary / canvas | 17.78:1 |
+| Secondary / raised | 7.55:1 |
+| Quiet / raised | 5.12:1 |
+| Action text / default | 7.28:1 |
+| Action text / hover | 8.61:1 |
+| Action text / pressed | 5.91:1 |
+| Success pair | 9.66:1 |
+| Review pair | 9.79:1 |
+| Mismatch pair | 8.46:1 |
 
-Use Silver for borders, **not** small body text. Its contrast on White is only 3.76:1. A check badge must include a word and icon, not just green color.
+These text pairs exceed 4.5:1 for normal text. Control boundary against raised surface is 3.64:1. Gradients and images must not sit behind essential text without a sufficiently opaque surface. This is a token contrast specification, not a certification of every rendered page.
 
 ## Typography
+- Space Grotesk: headings, price, wordmark numerals.
+- Inter: body, links, buttons, form fields.
+- JetBrains Mono: unit numbers, technical labels, diagram identifiers.
+- System and monospace fallbacks are provided; Google Fonts requests use display=swap.
 
-- **Display and headings:** Barlow Condensed, weights 600 and 700; fall back to Arial Narrow, then a system sans serif. Use restrained uppercase for short labels only.
-- **Body and controls:** Inter, weights 400, 500, 600, and 700; fall back to system sans serif. Self-host font files where possible, with `font-display: swap`.
-- **Numbers and part IDs:** Inter with tabular numerals. Preserve the exact casing and punctuation of OE numbers.
+| Role | Scale |
+| --- | --- |
+| Hero | clamp(3.1rem, 6.2vw, 5.65rem) |
+| Page title | clamp(2.2rem, 4.3vw, 4rem) |
+| Section title | clamp(2rem, 3.4vw, 3.15rem) |
+| Card title | clamp(1.2rem, 1.8vw, 1.5rem) |
+| Body / fields | 1rem |
+| Small body / fitment explanations | .875rem |
+| Technical labels | .75rem |
 
-| Role | Desktop / mobile size | Line height | Weight | Usage |
-| --- | --- | --- | ---: | --- |
-| Display | `clamp(3rem, 6vw, 5rem)` | 0.98 | 700 | One hero headline |
-| H1 | `clamp(2.5rem, 4vw, 4rem)` | 1.05 | 700 | Page title |
-| H2 | `clamp(2rem, 3vw, 3rem)` | 1.1 | 700 | Major section |
-| H3 | `clamp(1.5rem, 2vw, 2rem)` | 1.15 | 600 | Card/section heading |
-| H4 | `1.25rem` | 1.2 | 600 | Detail group |
-| Lead | `1.125rem` | 1.55 | 400 | Intro paragraph |
-| Body | `1rem` | 1.5 | 400 | Product explanations |
-| Small | `0.875rem` | 1.45 | 500 | Helper text, metadata |
-| Eyebrow | `0.75rem` | 1.3 | 700 | Short category label; letter spacing 0.08em |
+Use sentence case. Keep uppercase to short technical eyebrows. Preserve exact unit numbers and readable line lengths.
 
-Do not set essential specifications or warranty language below 14 px. Limit long reading lines to roughly 70 characters.
+## Spacing, surface, and motion
+- Content width: 78rem. Section spacing: clamp(4rem, 8vw, 7rem).
+- Spacing foundation: .25, .5, .75, 1, 1.5, 2, 3rem.
+- Control/card/panel radii: .6 / 1.1 / 1.5rem.
+- Glass effects are restrained to navigation, floating labels, and search surfaces, with solid color fallbacks.
+- Subtle inset highlights and dark shadows distinguish elevated cards.
+- Interactive cards lift on hover. Buttons depress on activation.
+- Transitions: 160ms controls / 280ms panels. Gallery reveal and cart entrance use CSS keyframes.
+- All animation, transitions, and smooth scrolling stop under prefers-reduced-motion.
+- Processing controls expose aria-busy and disabled states. Local actions yield a render frame rather than inventing a network delay.
 
-## Layout, shape, and interaction
+## Homepage
+1. Compact location bar and navigation.
+2. Oversized two-line value proposition plus conceptual component artwork.
+3. Year/make/model search dock. On phones, the search appears before artwork.
+4. Shop-by-platform shortcuts.
+5. Three linked value cards: targeted repair, fitment, direct support.
+6. Featured kit with price and repair exclusions.
+7. Assembly-replacement versus targeted-repair comparison.
+8. Sourced feedback excerpts and contact card.
+9. Repair resources, FAQ, final CTA, consistent footer.
 
-- Content width: 76rem maximum; page gutters: 1rem mobile, 1.5rem tablet, 2rem desktop.
-- Spacing uses a 4 px base; section gaps are 64–96 px desktop and 40–64 px mobile.
-- Corners: 4 px for inputs and small controls, 8 px for cards and primary buttons. Avoid pill-shaped purchase buttons; reserve pills for status badges.
-- Borders: 1 px neutral for passive separation; input and selected-state borders must remain visually distinct against adjacent surfaces.
-- Tap targets: at least 44 × 44 px. Show a 3 px focus outline with 3 px offset. Never remove focus styling.
-- Use Signal blue focus outlines on light surfaces and Amber focus outlines on Graphite. Input labels remain visible after entry; placeholder text never substitutes for a label.
-- Motion: 120–180 ms for hover/focus transitions. Disable nonessential motion under `prefers-reduced-motion`.
+Trust statements use verified Rochester location, repair scope, and sourced eBay feedback. No unverified guarantee, manufacture-origin badge, aggregate rating, or permanent-fix claim is displayed. Sources and business facts are recorded in BRAND_RESEARCH.md.
 
-## E-commerce components
+## Product and fitment
+- Desktop: gallery left; price, fitment, and purchase panel right. The panel is sticky and scrollable on shorter screens so no controls become unreachable.
+- <=720px: gallery, then purchase details; fixed safe-area-aware bottom purchase bar. Main content has bottom clearance.
+- Gallery provides three selectable diagrams, active thumbnail border, enlarged native dialog, Escape dismissal, and focus restoration.
+- Diagrams are explicitly labeled conceptual, not product photographs or dimensionally accurate service drawings. Replace them with approved product photos when available.
+- Comparison is a semantic table that becomes labeled stacked rows on mobile.
+- Repair guidance describes preparation and scope; it does not replace the applicable 48V service procedure.
 
-### Add to Cart
+### Fitment contract
+1. Empty or edited selection: neutral/review prompt; no retained success state.
+2. 2019–2024 Ram 1500 5.7L eTorque: green **Vehicle match confirmed**, with unit number, bearing dimensions, and fault still to verify.
+3. Matching vehicle plus 68623194AC (case normalized): green **Vehicle + unit number match**; inspection still required.
+4. Other unit number: amber **Unit number needs review**.
+5. Outside listed vehicle range: red **Vehicle match not confirmed**.
+6. Changing make clears the model.
+A vehicle match is not a diagnosis or unconditional fitment warranty.
 
-- Amber fill, Ink text, 700 weight, 16 px minimum, 52 px height desktop and 48 px mobile, with 16–24 px horizontal padding.
-- Label should be **Add to Cart**. Use **Check Fitment** first when fitment is required and not yet confirmed; the purchase action may remain available only if the product policy permits an unverified purchase.
-- Hover, pressed, disabled, loading, and focus states are defined in `tokens.css`. Loading keeps the button width stable and announces progress to assistive technology. Disabled styling is accompanied by explanatory text.
-- Do not put an Amber button next to another Amber button. Use a dark-outline secondary action such as **Ask a Fitment Question**.
-- On mobile product pages, a sticky purchase bar may show price, fitment state, and one purchase action without hiding legal or warranty information.
+## Accessibility and mobile
+- Native select fields stay at 16px to avoid mobile form zoom.
+- Primary controls are at least 44px tall; purchase buttons are 52px.
+- Visible keyboard focus, skip link, associated form labels, expanded navigation states, live fitment status, native modal semantics.
+- Touch navigation has explicit open/close controls and closes after selection.
+- 720px controls product/search layout; 880px controls desktop/mobile navigation.
+- No horizontal page overflow at the tested widths; the product section navigation may scroll within its own region.
+- Footer/header use the same component and accessible brand name.
 
-### Search and fitment forms
+## Commerce and release boundaries
+Cart state persists locally and purchase continues on the existing official product page. This redesign does not introduce a payment backend or claim confirmed inventory. Existing price and catalog facts must be maintained in src/data.js. Staging retains noindex metadata.
 
-- Place labels above fields. Use a 48 px minimum input height, White fill, Ink input text, and Silver border. On focus, show a Signal blue border and outline.
-- Validation errors use Error text plus an icon and a sentence that tells the customer what to correct. Preserve entered vehicle details when validation fails.
-- Search suggestions must be keyboard reachable and announce their count. Offer an explicit no-results path to support rather than a blank product grid.
-
-### Product image gallery
-
-- Main media sits on Mist in a square frame, with `object-fit: contain` and no cropped kit components.
-- Thumbnails are at least 72 × 72 px. The selected thumbnail has a 3 px Signal blue outline; hover alone does not imply selection.
-- Supply descriptive alt text for each unique image and label close-ups by purpose, such as “resolver connector detail.” Decorative repeated views can use empty alt text.
-- Keyboard users can reach each thumbnail. The gallery must work without hover; do not autoplay video. A zoomed view needs an accessible close button and focus return.
-- Mark the selected thumbnail with `aria-current="true"` and keep the main image alt text in sync with selection.
-- If media is missing, show a clear placeholder and avoid publishing the product as a featured item until representative photos are available.
-
-### Vehicle Fitment Confirmed badge
-
-- Pale green background, dark green text, check icon, and the exact label **Vehicle Fitment Confirmed**.
-- Show it only after the checker validates all required attributes for that SKU: year, make, model, relevant engine/trim, and assembly or OE number where needed.
-- Pair it with a visible summary: “Fits {vehicle details} · Verified against {part/assembly number}.” Allow the customer to edit those details.
-- Alternative states: **Fitment Needs Review** in caution colors and **Fitment Not Confirmed** in error colors. A mismatch is not the same as a definitive incompatibility unless the catalog data proves it.
-
-## Product page order
-
-1. Breadcrumb and exact part name.
-2. Image gallery beside price, stock, fitment check, and Add to Cart.
-3. “What this fixes” and “What it does not fix.”
-4. Kit contents and install requirements.
-5. Fitment table with OE numbers and revision notes.
-6. Installation overview, warranty, shipping, returns, and support.
-7. Verified reviews and related repair guides, when available.
-
-Keep fitment and repair exclusions adjacent to the purchase action. A trust badge must link to its supporting details; “Engineered in the USA” and warranty terms should appear only on SKUs where they are verified.
-
-## Accessibility and implementation checklist
-
-- Semantic heading order, native form labels, error text linked to its field, and live announcements for fitment results and cart updates.
-- Statuses have text and icon as well as color; price and stock changes are announced without moving focus.
-- Text contrast uses only approved pairs above. Interactive controls and focus indicators should retain at least 3:1 contrast against adjacent colors.
-- Test at 320 px and wider, at 200% zoom, by keyboard, and with a screen reader. WCAG compliance depends on rendered components and behavior as well as token contrast.
-
+## Verification
+```powershell
+pnpm build
+pnpm preview
+pnpm verify:staging -- http://127.0.0.1:4173/
+pnpm verify:interactions -- http://127.0.0.1:4173/
+```
+Both verifiers also accept the GitHub Pages repository URL. The viewport suite covers home, About, and product at 320, 390, 719, 721, 879, 881, and 1280px. Interaction checks cover fitment, gallery, keyboard dismissal/focus, cart persistence/removal, navigation, and reduced motion. No orders are placed.

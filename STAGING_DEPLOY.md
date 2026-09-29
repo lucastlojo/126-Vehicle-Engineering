@@ -14,9 +14,10 @@ This Vite/React storefront is deployed from `main` by `.github/workflows/deploy-
    pnpm install --frozen-lockfile
    pnpm exec playwright install chromium
    pnpm verify:staging -- https://<owner>.github.io/<repository-name>/
+   pnpm verify:interactions -- https://<owner>.github.io/<repository-name>/
    ```
 
-   To check locally, run `pnpm build`, then `pnpm preview`, then `pnpm verify:staging -- http://127.0.0.1:4173/`. The verifier checks both routes at 320, 390, 719, 721, 879, 881, and 1280 CSS pixels for rendered headings, images and same-origin assets, horizontal overflow, base-path links, navigation and product breakpoints, and the `noindex` meta tag.
+   To check locally, run `pnpm build`, then `pnpm preview`, then `pnpm verify:staging -- http://127.0.0.1:4173/`. The verifier checks all three routes at 320, 390, 719, 721, 879, 881, and 1280 CSS pixels for rendered headings, images and same-origin assets, horizontal overflow, base-path links, navigation and product breakpoints, and the `noindex` meta tag.
 
 ## Base path
 
@@ -24,7 +25,7 @@ The workflow's `VITE_BASE_PATH: /${{ github.event.repository.name }}/` is for a 
 
 ## Visibility and indexing
 
-Both HTML pages include `<meta name="robots" content="noindex, nofollow">` for staging. Remove this from any production release. **GitHub Pages is generally public, including when the source repository is private.** A robots tag asks compliant search engines not to index the pages; it does not prevent people or bots from viewing them. GitHub Enterprise Cloud organization project sites can be privately published where Pages access control is available. If access restriction is mandatory and that feature is unavailable, use a host that provides authentication instead of publishing this staging site on Pages.
+All three HTML pages include `<meta name="robots" content="noindex, nofollow">` for staging. Remove this from any production release. **GitHub Pages is generally public, including when the source repository is private.** A robots tag asks compliant search engines not to index the pages; it does not prevent people or bots from viewing them. GitHub Enterprise Cloud organization project sites can be privately published where Pages access control is available. If access restriction is mandatory and that feature is unavailable, use a host that provides authentication instead of publishing this staging site on Pages.
 
 The frontend is still a demonstration: the cart is local, checkout hands off to the legacy product page, artwork is conceptual, and catalog/fitment data need owner signoff. Do not use this Pages site for real orders.
 

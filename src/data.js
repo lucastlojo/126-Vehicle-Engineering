@@ -19,9 +19,9 @@ export const ramKit = {
   referenceNumber: '68623194AC',
   legacyPurchaseUrl: 'https://126veng.com/PartBrowser/php/public/part-detail.html?price_id=price_1Tu1YBFbOGYu2kpjuTaKGfho',
   media: [
-    { src: sitePath('media/mgu-diagram.svg'), alt: 'Conceptual eTorque motor-generator diagram; not a product photograph', label: 'Technical overview' },
-    { src: sitePath('media/fitment-diagram.svg'), alt: 'Illustration showing where to find and compare an assembly number', label: 'Check fitment' },
-    { src: sitePath('media/repair-diagram.svg'), alt: 'Illustration of inspect, repair, and verify stages', label: 'Repair approach' },
+    { src: sitePath('media/mgu-exploded.svg'), alt: 'Conceptual exploded resolver and bearing assembly; not a product photograph', label: 'Component study' },
+    { src: sitePath('media/fitment-dark.svg'), alt: 'Illustration showing where to find and compare an assembly number', label: 'Unit check' },
+    { src: sitePath('media/repair-dark.svg'), alt: 'Illustration of inspect, repair, and verify stages', label: 'Repair sequence' },
   ],
 };
 
